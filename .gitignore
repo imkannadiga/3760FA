@@ -1,0 +1,63 @@
+# Ignore IDEs and editors
+.idea/
+.vscode/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Ignore Spring Boot build directories
+/target/
+/out/
+
+# Ignore Maven wrapper files
+/.mvn/
+mvnw
+mvnw.cmd
+
+# Ignore Gradle wrapper files
+/gradle/
+/gradlew
+gradlew.bat
+
+# Ignore Node.js and React build files
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+/dist/
+/build/
+/coverage/
+
+# Ignore Python ROS2 packages and Python environment
+__pycache__/
+/venv/
+/.env
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.log
+
+# Ignore Docker files
+docker-compose.override.yml
+*.swp
+
+# Ignore ROS2 build and install directories
+/build/
+install/
+log/
+
+# Ignore MongoDB related files
+*.bson
+*.json
+
+# Ignore IntelliJ/Android Studio/JetBrains IDE specific files
+.idea/
+
+# Ignore logs
+*.log

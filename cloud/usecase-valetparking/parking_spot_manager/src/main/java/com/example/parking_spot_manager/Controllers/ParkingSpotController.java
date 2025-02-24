@@ -10,8 +10,6 @@ import com.example.parking_spot_manager.Models.ParkingSpot;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -77,4 +75,21 @@ public class ParkingSpotController {
         parkingSpotRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Get first available parking spot
+    @GetMapping("/get-free-space")
+	public ResponseEntity<?> getFirstFreeSpace() {
+		// Retrieve all free parking spots from the repository
+		List<ParkingSpot> allSpots = parkingSpotRepository.findByOccupied(false);
+
+		if (allSpots == null || allSpots.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No free parking spots available.");
+		}
+
+		// Return the first available free spot
+		ParkingSpot firstSpot = allSpots.get(0);
+
+		return ResponseEntity.ok(firstSpot);
+	}
+
 }

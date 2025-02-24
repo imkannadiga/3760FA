@@ -13,7 +13,7 @@ public class ParkingSpot {
     private float Y;
     private float theta;
 
-    private boolean occupied;
+    private boolean occupied=false;
 
     public float getX() {
         return X;
