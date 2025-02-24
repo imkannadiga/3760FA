@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/ugv_client/ugv_client.egg-info
+writing ../../build/ugv_client/ugv_client.egg-info/PKG-INFO
+writing dependency_links to ../../build/ugv_client/ugv_client.egg-info/dependency_links.txt
+writing entry points to ../../build/ugv_client/ugv_client.egg-info/entry_points.txt
+writing requirements to ../../build/ugv_client/ugv_client.egg-info/requires.txt
+writing top-level names to ../../build/ugv_client/ugv_client.egg-info/top_level.txt
+writing manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+reading manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+writing manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build
+creating /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib
+creating /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client
+copying ugv_client/client.py -> /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client
+copying ugv_client/__init__.py -> /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client
+running install
+running install_lib
+creating /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client
+copying /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client/client.py -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client
+copying /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client/__init__.py -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client
+byte-compiling /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/client.py to client.cpython-310.pyc
+byte-compiling /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ament_index
+creating /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ament_index/resource_index
+creating /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ament_index/resource_index/packages
+copying resource/ugv_client -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ament_index/resource_index/packages
+copying package.xml -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ugv_client
+running install_egg_info
+Copying ../../build/ugv_client/ugv_client.egg-info to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info
+running install_scripts
+Installing ugv_client script to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client
+writing list of installed files to '/home/softdcar/3760FA/UGV/UGVController/build/ugv_client/install.log'

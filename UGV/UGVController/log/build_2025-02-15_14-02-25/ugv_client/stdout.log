@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing ugv_client.egg-info/PKG-INFO
+writing dependency_links to ugv_client.egg-info/dependency_links.txt
+writing entry points to ugv_client.egg-info/entry_points.txt
+writing requirements to ugv_client.egg-info/requires.txt
+writing top-level names to ugv_client.egg-info/top_level.txt
+reading manifest file 'ugv_client.egg-info/SOURCES.txt'
+writing manifest file 'ugv_client.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv-client.egg-link (link to .)
+Installing ugv_client script to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client
+
+Installed /home/softdcar/3760FA/UGV/UGVController/build/ugv_client
+running symlink_data
+symbolically linking /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/resource/ugv_client -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ament_index/resource_index/packages
+symbolically linking /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/package.xml -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/share/ugv_client

@@ -1,0 +1,54 @@
+services:
+  mongo-database:
+    image: mongo:latest
+    container_name: mongo-database
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_network
+
+  controlserver:
+    build: ./controlserver
+    container_name: controlserver
+    restart: always
+    depends_on:
+      - mongo-database
+    environment:
+      - MONGO_URI=mongodb://mongo-database:27017/
+    ports:
+      - "10001:10001"
+    networks:
+      - app_network
+
+  mapserver:
+    build: ./mapserver
+    container_name: mapserver
+    restart: always
+    depends_on:
+      - mongo-database
+    environment:
+      - MONGO_URI=mongodb://mongo-database:27017/
+    ports:
+      - "10002:10002"
+    networks:
+      - app_network
+
+  ui-service:
+    build: ./ui-service
+    container_name: ui-service
+    restart: always
+    depends_on:
+      - controlserver
+      - mapserver
+    ports:
+      - "3000:80"
+    networks:
+      - app_network
+
+volumes:
+  mongo_data:
+
+networks:
+  app_network:
+    driver: bridge

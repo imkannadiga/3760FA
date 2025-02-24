@@ -1,0 +1,8 @@
+com/example/controlserver/Repositories/UGVRepository.class
+com/example/controlserver/Controllers/WebSocketConfig.class
+com/example/controlserver/Models/Coordinate.class
+com/example/controlserver/Services/SocketConnectionHandler.class
+com/example/controlserver/ControlserverApplication.class
+com/example/controlserver/Controllers/UGVController.class
+com/example/controlserver/Services/UGVService.class
+com/example/controlserver/Models/UGV.class

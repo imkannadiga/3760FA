@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/ugv_client/ugv_client.egg-info/PKG-INFO
+writing dependency_links to ../../build/ugv_client/ugv_client.egg-info/dependency_links.txt
+writing entry points to ../../build/ugv_client/ugv_client.egg-info/entry_points.txt
+writing requirements to ../../build/ugv_client/ugv_client.egg-info/requires.txt
+writing top-level names to ../../build/ugv_client/ugv_client.egg-info/top_level.txt
+reading manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+writing manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+running build
+running build_py
+copying ugv_client/client.py -> /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client
+running install
+running install_lib
+copying /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build/lib/ugv_client/client.py -> /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client
+byte-compiling /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/client.py to client.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info' (and everything under it)
+Copying ../../build/ugv_client/ugv_client.egg-info to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info
+running install_scripts
+Installing ugv_client script to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client
+writing list of installed files to '/home/softdcar/3760FA/UGV/UGVController/build/ugv_client/install.log'

@@ -1,0 +1,21 @@
+[0.703s] Invoking command in '/home/softdcar/3760FA/UGV/UGVController/src/ugv_client': PYTHONPATH=/home/softdcar/3760FA/UGV/UGVController/build/ugv_client/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ugv_client build --build-base /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build install --record /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/install.log --single-version-externally-managed install_data
+[0.945s] running egg_info
+[0.946s] writing ../../build/ugv_client/ugv_client.egg-info/PKG-INFO
+[0.946s] writing dependency_links to ../../build/ugv_client/ugv_client.egg-info/dependency_links.txt
+[0.946s] writing entry points to ../../build/ugv_client/ugv_client.egg-info/entry_points.txt
+[0.947s] writing requirements to ../../build/ugv_client/ugv_client.egg-info/requires.txt
+[0.947s] writing top-level names to ../../build/ugv_client/ugv_client.egg-info/top_level.txt
+[0.949s] reading manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+[0.950s] writing manifest file '../../build/ugv_client/ugv_client.egg-info/SOURCES.txt'
+[0.950s] running build
+[0.950s] running build_py
+[0.951s] running install
+[0.951s] running install_lib
+[0.952s] running install_data
+[0.952s] running install_egg_info
+[0.954s] removing '/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info' (and everything under it)
+[0.954s] Copying ../../build/ugv_client/ugv_client.egg-info to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info
+[0.955s] running install_scripts
+[0.978s] Installing ugv_client script to /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client
+[0.978s] writing list of installed files to '/home/softdcar/3760FA/UGV/UGVController/build/ugv_client/install.log'
+[1.022s] Invoked command in '/home/softdcar/3760FA/UGV/UGVController/src/ugv_client' returned '0': PYTHONPATH=/home/softdcar/3760FA/UGV/UGVController/build/ugv_client/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ugv_client build --build-base /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/build install --record /home/softdcar/3760FA/UGV/UGVController/build/ugv_client/install.log --single-version-externally-managed install_data

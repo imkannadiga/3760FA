@@ -1,0 +1,16 @@
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Controllers/NavogationRequestController.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Controllers/UGVController.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Controllers/WebSocketConfig.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/ControlserverApplication.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Misc/JobStatus.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Misc/UGVStatus.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Models/Coordinate.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Models/NavigationRequest.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Models/UGV.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Repositories/NavigationRequestRepository.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Repositories/UGVRepository.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Schedulers/NavigationRequestScheduler.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Schedulers/UGVHeartbeatScheduler.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Services/NavigationRequestService.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Services/SocketConnectionHandler.java
+/home/softdcar/3760FA/cloud/controlserver/src/main/java/com/example/controlserver/Services/UGVService.java
