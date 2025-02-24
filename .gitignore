@@ -11,7 +11,7 @@ Thumbs.db
 Desktop.ini
 
 # Ignore Spring Boot build directories
-/target/
+**/target/
 /out/
 
 # Ignore Maven wrapper files

@@ -19,7 +19,7 @@ import com.example.controlserver.Services.NavigationRequestService;
 
 @RestController
 @RequestMapping("/api/navigation-request")
-public class NavogationRequestController {
+public class NavigationRequestController {
     
     @Autowired
     private NavigationRequestService navigationRequestService;
