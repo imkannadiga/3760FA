@@ -52,6 +52,10 @@ public class NavigationRequestService {
         return navigationRequestRepository.findByJobStatus(JobStatus.CREATED);
     }
 
+    public List<NavigationRequest> getCompletedJobs() {
+        return navigationRequestRepository.findByJobStatus(JobStatus.COMPLETED);
+    }
+
     public void generateCallBack(String jobId, String callbackURL) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, Object> requestBody = new HashMap<>();
@@ -63,6 +67,7 @@ public class NavigationRequestService {
         ResponseEntity<String> response = restTemplate.exchange(callbackURL, HttpMethod.POST, requestEntity, String.class);
         NavigationRequest navReq = this.getNavigationRequestById(jobId);
         navReq.setComment(response.toString());
+        navReq.setJobStatus(JobStatus.FINISHED);
         this.updateNavigationRequest(jobId, navReq);
         return;
     }
