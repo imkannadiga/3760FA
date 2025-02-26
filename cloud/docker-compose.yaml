@@ -46,6 +46,15 @@ services:
     networks:
       - app_network
 
+  parking-spot-manager:
+    build: ./parking_spot_manager
+    container_name: parking-spot-manager
+    restart: always
+    depends_on:
+      - ui-service
+    networks:
+      - app_network
+
 volumes:
   mongo_data:
 
