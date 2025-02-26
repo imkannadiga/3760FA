@@ -13,20 +13,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.controlserver.DTOs.CreateNavigationRequestDTO;
 import com.example.controlserver.Misc.JobStatus;
+import com.example.controlserver.Misc.UGVStatus;
 import com.example.controlserver.Models.NavigationRequest;
+import com.example.controlserver.Models.UGV;
 import com.example.controlserver.Services.NavigationRequestService;
+import com.example.controlserver.Services.UGVService;
 
 @RestController
 @RequestMapping("/api/navigation-request")
 public class NavigationRequestController {
-    
+
     @Autowired
     private NavigationRequestService navigationRequestService;
-    
+
+    @Autowired
+    private UGVService ugvService;
+
     @PostMapping
-    public ResponseEntity<NavigationRequest> createNavigationRequest(@RequestBody NavigationRequest navigationRequest) {
+    public ResponseEntity<Object> createNavigationRequest(@RequestBody CreateNavigationRequestDTO dto) {
+        // Find the UGV by ID
+        UGV ugv = ugvService.getUGVById(dto.getUgvId());
+
+        if(ugv == null) {
+            return ResponseEntity.badRequest().body("Invalid UGV ID. UGV not found");
+        } 
+
+        if(ugv.getStatus() != UGVStatus.ONLINE) {
+            return ResponseEntity.badRequest().body("UGV not online");
+        }
+
+        // Create NavigationRequest
+        NavigationRequest navigationRequest = new NavigationRequest();
+        navigationRequest.setUgv(ugv);
+        navigationRequest.setTargetPose(dto.getTargetPose());
+        navigationRequest.setCallbackURL(dto.getCallbackURL());
+
+        // Save to DB
         NavigationRequest createdNavigationRequest = navigationRequestService.saveNavigationRequest(navigationRequest);
+
         return ResponseEntity.ok(createdNavigationRequest);
     }
 
@@ -43,7 +69,8 @@ public class NavigationRequestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<NavigationRequest> updateNavigationRequest(@PathVariable String id, @RequestBody NavigationRequest navDetails) {
+    public ResponseEntity<NavigationRequest> updateNavigationRequest(@PathVariable String id,
+            @RequestBody NavigationRequest navDetails) {
         NavigationRequest updatedNavRequest = navigationRequestService.updateNavigationRequest(id, navDetails);
         return ResponseEntity.ok(updatedNavRequest);
     }
@@ -64,6 +91,5 @@ public class NavigationRequestController {
 
         return ResponseEntity.noContent().build();
     }
-    
 
 }

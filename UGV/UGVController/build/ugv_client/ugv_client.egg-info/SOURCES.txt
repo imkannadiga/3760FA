@@ -14,3 +14,4 @@ test/test_pep257.py
 ugv_client/__init__.py
 ugv_client/client.py
 ugv_client/map_server_client.py
+ugv_client/ugv_client_new.py

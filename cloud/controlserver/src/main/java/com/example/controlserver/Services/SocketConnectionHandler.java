@@ -13,7 +13,9 @@ import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.example.controlserver.Misc.JobStatus;
 import com.example.controlserver.Misc.UGVStatus;
+import com.example.controlserver.Models.NavigationRequest;
 import com.example.controlserver.Models.UGV;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +27,13 @@ public class SocketConnectionHandler extends TextWebSocketHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(SocketConnectionHandler.class);
 
-    @Autowired UGVService ugvService;
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired 
+    UGVService ugvService;
+
+    @Autowired
+    NavigationRequestService navigationRequestService;
 
     // This method is executed when client tries to connect
     // to the sockets
@@ -76,6 +84,13 @@ public class SocketConnectionHandler extends TextWebSocketHandler {
                     ugvService.updateUGV(ugv.getId(), ugv);
                     logger.debug("Heartbeat recieved from UGV : "+ugv.getId());
                     break;
+                
+                case "navigation_callback":
+                    NavigationRequest navReq = navigationRequestService.getNavigationRequestById((String) payload.get("request_id"));
+                    navReq.setJobStatus(JobStatus.COMPLETED);
+                    logger.info("Completed navigation job : "+navReq.getId());
+                    navigationRequestService.saveNavigationRequest(navReq);
+                    break;
 
                 default:
                     logger.error("Invalid or unknown request in websocket :: "+responseType);
@@ -84,7 +99,7 @@ public class SocketConnectionHandler extends TextWebSocketHandler {
         }
     }
 
-    public void sendMessageToClient(String sessionId, WebSocketMessage<?> message) throws Exception {
+    public void sendMessageToClient(String sessionId, Map<String, Object> payload) throws Exception {
 
         WebSocketSession session = webSocketSessions.getOrDefault(sessionId, null);
 
@@ -92,6 +107,9 @@ public class SocketConnectionHandler extends TextWebSocketHandler {
             // System.out.println("Client has disconnected or does not exist.......");
             return;
         }
-        session.sendMessage(message);
+
+        String message = objectMapper.writeValueAsString(payload);
+
+        session.sendMessage(new TextMessage(message));
     }
 }

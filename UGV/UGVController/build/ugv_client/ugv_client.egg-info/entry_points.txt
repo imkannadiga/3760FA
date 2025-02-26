@@ -1,4 +1,5 @@
 [console_scripts]
 map_server_client = ugv_client.map_server_client:main
 ugv_client = ugv_client.client:main
+ugv_client_new = ugv_client.ugv_client_new:main
 

@@ -13,7 +13,10 @@ COPY . .
 # Install required packages
 RUN apt-get update && \
     apt-get install -y python3-pip && \
-    pip install websockets requests
+    pip install websockets requests python-dotenv
+
+# Install ROS 2 dependencies
+RUN apt-get install -y ros-iron-nav2-msgs ros-iron-geometry-msgs ros-iron-rclpy
 
 # Build ROS 2 workspace
 RUN colcon build

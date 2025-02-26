@@ -1,5 +1,7 @@
 package com.example.controlserver.Models;
 
+import java.util.Map;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,7 +17,7 @@ public class NavigationRequest {
     @DBRef
     private UGV ugv;
 
-    private Coordinate targetPose;
+    private Map<String, Object> targetPose;
 
     private JobStatus jobStatus = JobStatus.CREATED;
 
@@ -35,11 +37,11 @@ public class NavigationRequest {
         this.ugv = ugv;
     }
 
-    public Coordinate getTargetPose() {
-        return targetPose;
+    public Map<String, Object> getTargetPose() {
+        return this.targetPose;
     }
 
-    public void setTargetPose(Coordinate targetPose) {
+    public void setTargetPose(Map<String, Object> targetPose) {
         this.targetPose = targetPose;
     }
 

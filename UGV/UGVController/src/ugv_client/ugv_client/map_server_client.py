@@ -47,29 +47,24 @@ class CostmapCloudSync(Node):
     # ===================== CALLBACKS =====================
     def map_callback(self, msg):
         with self.lock:
-            self.get_logger().info("inside map callback")
             self.latest_map = msg
 
     def global_costmap_callback(self, msg):
         with self.lock:
-            self.get_logger().info("inside global costmap callback")
             self.latest_global_costmap = msg
 
     def local_costmap_callback(self, msg):
         with self.lock:
-            self.get_logger().info("inside local costmap callback")
             self.latest_local_costmap = msg
 
     def tf_callback(self, msg):
         for transform in msg.transforms:
             if transform.child_frame_id == "base_footprint":  # Assuming robot frame is "base_link"
                 with self.lock:
-                    self.get_logger().info("inside transform callback")
                     self.latest_transform = transform
 
     # ===================== UPLOAD LOOP =====================
     def upload_loop(self):
-        self.get_logger().info("inside upload loop")
         while rclpy.ok():
             # time.sleep(UPLOAD_INTERVAL)
             # with self.lock:
@@ -77,7 +72,6 @@ class CostmapCloudSync(Node):
                     self.upload_data()
 
     def upload_data(self):
-        self.get_logger().info("Uploading maps and transform...")
         try:
             data = {
                 "map": self.serialize_map(self.latest_map),

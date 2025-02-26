@@ -30,6 +30,7 @@ public class UGVService {
         UGV ugv = getUGVById(id);
         ugv.setName(ugvDetails.getName());
         ugv.setType(ugvDetails.getType());
+        ugv.setStatus(ugvDetails.getStatus());
         return ugvRepository.save(ugv);
     }
 

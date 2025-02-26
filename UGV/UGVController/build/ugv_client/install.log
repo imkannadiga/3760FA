@@ -1,6 +1,8 @@
+/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/ugv_client_new.py
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/client.py
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__init__.py
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/map_server_client.py
+/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__pycache__/ugv_client_new.cpython-310.pyc
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__pycache__/client.cpython-310.pyc
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__pycache__/__init__.cpython-310.pyc
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client/__pycache__/map_server_client.cpython-310.pyc
@@ -14,3 +16,4 @@
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/python3.10/site-packages/ugv_client-0.0.1-py3.10.egg-info/requires.txt
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client/map_server_client
 /home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client/ugv_client
+/home/softdcar/3760FA/UGV/UGVController/install/ugv_client/lib/ugv_client/ugv_client_new

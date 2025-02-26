@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.TextMessage;
 
 import com.example.controlserver.Misc.UGVStatus;
 import com.example.controlserver.Models.UGV;
@@ -38,11 +37,10 @@ public class UGVHeartbeatScheduler {
         for(UGV ugv : ugvList) {
             try {
                 ugv.setStatus(UGVStatus.OFFLINE);
-                socketConnectionHandler.sendMessageToClient(ugv.getSessionId(), new TextMessage(request.toString()));
+                socketConnectionHandler.sendMessageToClient(ugv.getSessionId(), request);
+                ugvService.updateUGV(ugv.getId(), ugv);
             } catch (Exception e) {
                 logger.error("Error sending broadcase to UGV "+ugv.getId());
-            } finally {
-                ugvService.updateUGV(ugv.getId(), ugv);
             }
         }
     }

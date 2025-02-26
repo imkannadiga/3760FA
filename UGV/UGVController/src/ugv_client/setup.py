@@ -15,6 +15,7 @@ setup(
     entry_points={
         'console_scripts': [
             'ugv_client = ugv_client.client:main',  # This starts the UGV controller
+            'ugv_client_new = ugv_client.ugv_client_new:main',  # This starts the UGV controller
             'map_server_client = ugv_client.map_server_client:main' # This starts the map server client
         ],
     },
