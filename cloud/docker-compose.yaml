@@ -55,6 +55,15 @@ services:
     networks:
       - app_network
 
+  valetparking:
+    build: ./valetparking
+    container_name: valetparking
+    restart: always
+    depends_on:
+      - parking-spot-manager
+    networks:
+      - app_network
+
 volumes:
   mongo_data:
 

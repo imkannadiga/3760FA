@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/parking_spot")
+@RequestMapping("/api/parking-spot")
 public class ParkingSpotController {
 
     @Autowired
