@@ -61,6 +61,8 @@ services:
     restart: always
     depends_on:
       - parking-spot-manager
+    ports:
+      - "9000:9000"
     networks:
       - app_network
 

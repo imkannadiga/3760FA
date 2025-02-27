@@ -15,6 +15,10 @@ public class ParkingSpot {
 
     private boolean occupied=false;
 
+    public String getId() {
+        return this.id;
+    }
+
     public float getX() {
         return X;
     }

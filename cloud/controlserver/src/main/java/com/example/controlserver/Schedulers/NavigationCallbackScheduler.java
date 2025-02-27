@@ -19,7 +19,7 @@ public class NavigationCallbackScheduler {
 
     private static final Logger logger = LoggerFactory.getLogger(NavigationCallbackScheduler.class);
     
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelay = 10000)
     public void completedNavigationCallbacks() {
         logger.info("Started navigation callback scheduler");
         // Get all completed navigation requests

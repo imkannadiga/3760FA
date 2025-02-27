@@ -1,6 +1,7 @@
 package com.example.valetparking.Helpers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.valetparking.Models.UGVStatus;
-import com.example.valetparking.Repositories.RequestRepository;
 import com.example.valetparking.Repositories.UGVStatusRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Service
 public class ControlHelper {
@@ -20,17 +21,12 @@ public class ControlHelper {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private RequestRepository requestRepository;
-
     @Autowired 
     private UGVStatusRepository ugvStatusRepository;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
     
     private final String CONTROL_SERVER_ADDRESS = "http://controlserver:10001/api";
 
-    private final String CALLBACK_URL = "http://valetparking:9001/api/valetparking/action-complete";
+    private final String CALLBACK_URL = "http://valetparking:9000/api/valetparking/action-complete";
 
     public String sendRequestToControlServer(String ugvId, Map<String, Object> targetPose) {
 
@@ -41,23 +37,27 @@ public class ControlHelper {
         payload.put("callbackURL", CALLBACK_URL);
 
         // Send message to control server
-        ResponseEntity<Map> resp = restTemplate.postForEntity(CONTROL_SERVER_ADDRESS+"/api/navigation-request", payload, Map.class);
+        ResponseEntity<Map> resp = restTemplate.postForEntity(CONTROL_SERVER_ADDRESS+"/navigation-request", payload, Map.class);
 
         return (String) resp.getBody().get("request_id");
 
     }
 
-    public boolean checkIfUGVIsValid(String ugvId) throws Exception{
+    public boolean checkIfUGVIsValid(String ugvId) throws Exception {
 
-        String response_str = (String) restTemplate.getForObject(CONTROL_SERVER_ADDRESS+"/ugv", String.class);
+        String resp_str = restTemplate.getForObject(CONTROL_SERVER_ADDRESS+"/ugv", String.class);
 
-        Map<String, Object> json_resp = objectMapper.readValue(response_str, Map.class);
+        JsonObject resp = new JsonParser().parse(resp_str).getAsJsonArray().get(0).getAsJsonObject();
+
+        System.out.println(resp.toString());
 
         // check to see if recieved response is empty or invalid
-        if(json_resp.isEmpty() || !json_resp.containsKey("id")) return false;
+        if(resp.isJsonNull() || !resp.has("id")) return false;
+
+        System.out.println("Json not null and has ID");
 
         // check to see if UGV is online
-        if(json_resp.get("status")!="ONLINE") return false;
+        if(!resp.get("status").getAsString().equals("ONLINE")) return false;
 
         return true;
     }   
@@ -78,13 +78,20 @@ public class ControlHelper {
 
     public boolean checkIfUGVIsRetrieveable(String ugvId) {
 
-        Optional<UGVStatus> ugvStatus = ugvStatusRepository.findById(ugvId);
+        List<UGVStatus> _ugvStatus = ugvStatusRepository.findByUgvId(ugvId);
+        UGVStatus ugvStatus = _ugvStatus.isEmpty() ? null : _ugvStatus.get(0);
+
+        System.out.println(_ugvStatus);
 
         // If there is no status entry, the UGV has not been parked and hence, cannot be retrieved
-        if(!ugvStatus.isPresent()) return false;
+        if(ugvStatus==null) return false;
+
+        System.out.println("Post null check");
 
         // If the UGV is not in the PARKED phase and is already present in the status records, it cannot be retrieved
-        if(ugvStatus.get().getCurrentPhase() != Phase.PARKED) return false;
+        if(ugvStatus.getCurrentPhase() != Phase.PARKED) return false;
+
+        System.out.println("Post parking check");
 
         return true;
 

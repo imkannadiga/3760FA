@@ -14,6 +14,7 @@ import com.example.valetparking.Models.Requests;
 import com.example.valetparking.Models.UGVStatus;
 import com.example.valetparking.Repositories.RequestRepository;
 import com.example.valetparking.Repositories.UGVStatusRepository;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,10 @@ public class ValetParkingController {
     private ParkingHelper parkingHelper;
 
     @PostMapping("/park")
-    public ResponseEntity<Object> parkUGV(@RequestBody String ugvId) {
+    public ResponseEntity<Object> parkUGV(@RequestBody Map<String, Object> payload) {
+
+        String ugvId = (String) payload.get("ugvID");
+
         try {
             if (!controlHelper.checkIfUGVIsValid(ugvId)) {
                 return ResponseEntity.badRequest().body("UGV ID invalid or UGV not online");
@@ -54,7 +58,8 @@ public class ValetParkingController {
             }
 
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Internal server error......please contact developer");
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Internal server error......"+e.getMessage());
         }
 
         // Search for available drop off location and block it
@@ -83,7 +88,10 @@ public class ValetParkingController {
     }
 
     @PostMapping("/retrieve")
-    public ResponseEntity<Object> retrieveUGV(@RequestBody String ugvId) {
+    public ResponseEntity<Object> retrieveUGV(@RequestBody Map<String, Object> payload) {
+
+        String ugvId = (String) payload.get("ugvID");
+
         try {
             if (!controlHelper.checkIfUGVIsValid(ugvId)) {
                 return ResponseEntity.badRequest().body("UGV ID invalid or UGV not online");
@@ -94,6 +102,7 @@ public class ValetParkingController {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body("Internal server error......please contact developer");
         }
 
@@ -136,55 +145,9 @@ public class ValetParkingController {
         List<Requests> requests = requestRepository.findByCurrentJobId(navigationId);
         Requests req = requests.get(0);
 
-        switch (req.getCurrentTask()) {
-            case PARK:
-                switch (req.getCurrentPhase()) {
-                    case DROP_OFF_LOCATION:
-                        // update currentPhase to PARKED
-                        req.setCurrentPhase(Phase.PARKED);
-                        // Parking subroutine
-                        Map<String, Object> parkingSpot = parkingHelper.getAndBlockAvailableParkingSpot();
-                        dropOffSpotHelper.releaseSpot(req.getUgvId());
-                        String newNavId = controlHelper.sendRequestToControlServer(req.getUgvId(), parkingSpot);
-                        req.setCurrentJobId(newNavId);
-                        req.setParkingSpotId((String) parkingSpot.get("id"));
-                        requestRepository.save(req);
-                        break;
+        req.setStepTwoPending(true);
 
-                    case PARKED:
-                        UGVStatus status = ugvStatusRepository.findByUgvId(req.getUgvId()).get(0);
-                        status.setCurrentPhase(Phase.PARKED);
-                        ugvStatusRepository.save(status);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-
-            case RETRIEVE:
-                switch (req.getCurrentPhase()) {
-                    case DROP_OFF_LOCATION:
-                        req.setCurrentPhase(Phase.DRIVE_AWAY_LOCATION);
-                        // Drive away subroutine:TODO
-                        requestRepository.save(req);
-                        break;
-
-                    case DRIVE_AWAY_LOCATION:
-                        // Update UGVStatus to DRIVE_AWAY_LOCATION:TODO
-                        UGVStatus status = ugvStatusRepository.findByUgvId(req.getUgvId()).get(0);
-                        status.setCurrentPhase(Phase.DRIVE_AWAY_LOCATION);
-                        ugvStatusRepository.save(status);
-                        break;
-
-                    default:
-                        break;
-                }
-                break;
-
-            default:
-                break;
-        }
+        requestRepository.save(req);
 
         return ResponseEntity.ok().build();
     }

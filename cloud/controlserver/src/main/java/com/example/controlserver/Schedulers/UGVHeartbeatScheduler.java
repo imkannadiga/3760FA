@@ -26,7 +26,7 @@ public class UGVHeartbeatScheduler {
 
     private static final Logger logger = LoggerFactory.getLogger(UGVHeartbeatScheduler.class);
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelay = 10000)
     public void broadcastUGVHeartBeat() {
         logger.info("Started UGV heartbeat request broadcaster");
 

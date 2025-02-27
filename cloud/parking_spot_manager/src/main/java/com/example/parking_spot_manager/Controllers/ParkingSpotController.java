@@ -40,7 +40,7 @@ public class ParkingSpotController {
 
     // BLOCK a parking spot
     @PostMapping("/{id}/block")
-    public ResponseEntity<String> blockParkingSpot(@RequestBody String id) {
+    public ResponseEntity<String> blockParkingSpot(@PathVariable String id) {
         if (!parkingSpotRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
@@ -54,7 +54,7 @@ public class ParkingSpotController {
 
     // RELEASE a parking spot
     @PostMapping("/{id}/release")
-    public ResponseEntity<String> releaseParkingSpot(@RequestBody String id) {
+    public ResponseEntity<String> releaseParkingSpot(@PathVariable String id) {
         if (!parkingSpotRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

@@ -32,7 +32,7 @@ public class NavigationRequestScheduler {
 
     private static final Logger logger = LoggerFactory.getLogger(NavigationRequestScheduler.class);
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedDelay = 10000)
     public void executePendingNavigationRequests() {
 
         logger.info("Started navigation request scheduler job");

@@ -22,6 +22,8 @@ public class Requests {
 
     private String parkingSpotId;
 
+    private boolean stepTwoPending;
+
     public Requests(String ugvId, Phase currentPhase, Task currentTask, String currentJobId) {
         this.ugvId = ugvId;
         this.currentPhase = currentPhase;
@@ -67,6 +69,14 @@ public class Requests {
 
     public String getParkingSpotId() {
         return this.parkingSpotId;
+    }
+
+    public boolean isStepTwoPending() {
+        return stepTwoPending;
+    }
+
+    public void setStepTwoPending(boolean stepTwoPending) {
+        this.stepTwoPending = stepTwoPending;
     }
 
 }

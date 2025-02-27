@@ -7,7 +7,7 @@ import threading
 import time
 import os
 from geometry_msgs.msg import TransformStamped
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 UPLOAD_INTERVAL = 2  # seconds
 DOWNLOAD_INTERVAL = 15  # seconds
@@ -16,9 +16,9 @@ class CostmapCloudSync(Node):
     def __init__(self):
         super().__init__('map_server_client')
 
-        load_dotenv()
+        config = dotenv_values(dotenv_path='./src/ugv_client/ugv_client/.env')
 
-        self.MAP_SERVER_URL = os.getenv('MAP_SERVER')
+        self.MAP_SERVER_URL = f"http://{config['MAP_SERVER']}"
         # Subscriptions
         self.subscription_map = self.create_subscription(OccupancyGrid, '/map', self.map_callback, 10)
         self.subscription_global_costmap = self.create_subscription(OccupancyGrid, '/global_costmap/costmap', self.global_costmap_callback, 10)
@@ -81,7 +81,7 @@ class CostmapCloudSync(Node):
             }
             response = requests.post(f"{self.MAP_SERVER_URL}/api/costmap/upload_map", json=data)
             response.raise_for_status()
-            self.get_logger().info("Maps and transform uploaded successfully.")
+            self.get_logger().debug("Maps and transform uploaded successfully.")
         except Exception as e:
             self.get_logger().error(f"Failed to upload data: {e}")
 

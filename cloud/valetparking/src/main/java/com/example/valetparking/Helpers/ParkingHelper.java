@@ -1,11 +1,14 @@
 package com.example.valetparking.Helpers;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Service
 public class ParkingHelper {
@@ -13,18 +16,28 @@ public class ParkingHelper {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String PARKING_SERVER_ADDRESS = "http://parking-spot_manager:9001/api/parking-spot";
+    private final String PARKING_SERVER_ADDRESS = "http://parking-spot-manager:9001/api/parking-spot";
 
     public Map<String, Object> getAndBlockAvailableParkingSpot() {
 
-        ResponseEntity<Map> spot = restTemplate.getForEntity(PARKING_SERVER_ADDRESS+"/get-free-space", Map.class);
+        String resp_str = restTemplate.getForObject(PARKING_SERVER_ADDRESS+"/get-free-space", String.class);
 
-        String spotId = (String) spot.getBody().get("id");
+        JsonObject spot_json = new JsonParser().parse(resp_str).getAsJsonObject();
+
+        if(spot_json.isJsonNull()) return null;
+
+        String spotId = (String) spot_json.get("id").getAsString();
 
         // block parking spot
         restTemplate.postForEntity(PARKING_SERVER_ADDRESS+"/"+spotId+"/block", null, String.class);
         
-        return spot.getBody();
+        Map<String, Object> spot = new HashMap<>();
+        spot.put("id", spot_json.get("id").getAsString());
+        spot.put("x",spot_json.get("x").getAsFloat());
+        spot.put("y",spot_json.get("y").getAsFloat());
+        spot.put("theta",spot_json.get("theta").getAsFloat());
+
+        return spot;
 
     }
 
